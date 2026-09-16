@@ -47,20 +47,26 @@ export default function AnalyzePage() {
     setResult(null);
 
     try {
-      const res = await fetch("/api/analyze", {
+      const res = await fetch("http://127.0.0.1:8000/analyze", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text }),
       });
+
+      if (!res.ok) {
+        setError(`Server responded with an error (HTTP ${res.status}).`);
+        return;
+      }
+
       const data = await res.json();
 
       if (data.error) {
         setError(data.error);
       } else {
-        setResult(data as AnalysisResult);
+        setResult(data.result as AnalysisResult);
       }
     } catch {
-      setError("Could not reach the server.");
+      setError("Could not reach the FastAPI server. Is it running on port 8000?");
     } finally {
       setLoading(false);
     }
