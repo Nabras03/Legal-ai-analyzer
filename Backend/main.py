@@ -9,7 +9,10 @@ from google import genai
 from google.genai import errors, types
 from pydantic import BaseModel, Field, TypeAdapter, ValidationError
 
+import legal_check
 from citations import find_citation
+from legal_check import LegalBasis
+from retrieval import INDEX_PATH, LegalIndex
 
 load_dotenv()
 # Gemini's free tier often answers 503 "high demand" for a few seconds at a
@@ -73,6 +76,10 @@ ANALYZE_CONFIG = types.GenerateContentConfig(
     response_mime_type="application/json",
 )
 
+# Built by build_index.py. Without it the app still works, just without
+# legal-basis checks (build_index.py itself imports this module).
+legal_index = LegalIndex.load() if INDEX_PATH.exists() else None
+
 app = FastAPI()
 
 app.add_middleware(
@@ -101,6 +108,8 @@ class Risk(BaseModel):
     # Filled in by us, not the model: where the citation sits in the input.
     citationVerified: bool = False
     citationSpan: tuple[int, int] | None = None
+    # Sections of Avtalslagen that may apply; None if the check didn't run.
+    legalBasis: list[LegalBasis] | None = None
 
 
 class LegalAnalysis(BaseModel):
@@ -109,6 +118,7 @@ class LegalAnalysis(BaseModel):
     documentType: str
     definitions: list[Definition]
     risks: list[Risk]
+    legalCheckAvailable: bool = False
 
 
 class NotLegalAnalysis(BaseModel):
@@ -126,6 +136,22 @@ def verify_citations(analysis: LegalAnalysis, document: str) -> None:
     for risk in analysis.risks:
         risk.citationSpan = find_citation(document, risk.citation)
         risk.citationVerified = risk.citationSpan is not None
+
+
+def add_legal_basis(analysis: LegalAnalysis) -> None:
+    """Attach Avtalslagen sections to each risk. Best effort: if Gemini is
+    unavailable or answers in the wrong shape, the analysis is still returned,
+    just flagged as not checked."""
+    if legal_index is None:
+        return
+    try:
+        bases = legal_check.assess(client, MODEL, legal_index, analysis.risks)
+    except (errors.APIError, ValidationError) as e:
+        print(f"Legal basis check failed: {e}")
+        return
+    for risk, basis in zip(analysis.risks, bases):
+        risk.legalBasis = basis
+    analysis.legalCheckAvailable = True
 
 
 @app.get("/")
@@ -156,5 +182,6 @@ def analyze(request: AnalyzeRequest):
 
     if isinstance(result, LegalAnalysis):
         verify_citations(result, request.text)
+        add_legal_basis(result)
 
     return {"result": result.model_dump()}

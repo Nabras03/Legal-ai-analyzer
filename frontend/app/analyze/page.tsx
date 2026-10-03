@@ -13,6 +13,17 @@ type Risk = {
   // Set by the backend: whether the quote was found in the analyzed text, and where.
   citationVerified: boolean;
   citationSpan: [number, number] | null;
+  // Sections of Avtalslagen that may apply; null if the check didn't run.
+  legalBasis: LegalBasis[] | null;
+};
+
+type LegalBasis = {
+  section: string; // "36 §"
+  law: string; // "AvtL"
+  quote: string;
+  explanation: string;
+  url: string;
+  quoteVerified: boolean;
 };
 
 type Definition = { term: string; definition: string };
@@ -25,6 +36,7 @@ type AnalysisResult =
       documentType: string;
       definitions: Definition[];
       risks: Risk[];
+      legalCheckAvailable: boolean;
     };
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8000";
@@ -240,6 +252,11 @@ export default function AnalyzePage() {
               {/* Risks */}
               <section>
                 <p className="hud-readout text-[var(--hud-cyan)]">Risks</p>
+                {result.risks.length > 0 && !result.legalCheckAvailable && (
+                  <p className="mt-1 font-[family-name:var(--font-geist-mono)] text-sm text-[var(--hud-amber)]">
+                    ⚠ Legal basis check unavailable right now — risks are shown without references to Avtalslagen.
+                  </p>
+                )}
                 {result.risks.length === 0 ? (
                   <p className="mt-1 font-[family-name:var(--font-geist-mono)] text-sm text-[var(--hud-cyan-dim)]">
                     No risk
@@ -266,6 +283,40 @@ export default function AnalyzePage() {
                           <p className="hud-readout mt-1 text-[var(--hud-amber)]">
                             ⚠ Quote not found in text — treat this finding with caution
                           </p>
+                        )}
+                        {r.legalBasis && (
+                          <div className="mt-2.5 border-t border-[rgba(53,224,255,0.2)] pt-2">
+                            <p className="hud-readout text-[var(--hud-cyan)]">Legal Basis · Avtalslagen</p>
+                            {r.legalBasis.length === 0 ? (
+                              <p className="mt-1 text-[var(--hud-cyan-dim)]">
+                                No directly applicable section in Avtalslagen.
+                              </p>
+                            ) : (
+                              <ul className="mt-1 space-y-2">
+                                {r.legalBasis.map((b) => (
+                                  <li key={b.section} className="text-[var(--hud-text)]">
+                                    <a
+                                      href={b.url}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="font-semibold text-[var(--hud-cyan)] underline-offset-2 hover:underline"
+                                    >
+                                      {b.section} {b.law} ↗
+                                    </a>
+                                    <p className="mt-0.5 border-l-2 border-[rgba(53,224,255,0.35)] pl-2 italic text-[var(--hud-cyan-dim)]">
+                                      ”{b.quote}”
+                                    </p>
+                                    <p className="mt-0.5">{b.explanation}</p>
+                                    {!b.quoteVerified && (
+                                      <p className="hud-readout mt-0.5 text-[var(--hud-amber)]">
+                                        ⚠ Quote not found in the statute text
+                                      </p>
+                                    )}
+                                  </li>
+                                ))}
+                              </ul>
+                            )}
+                          </div>
                         )}
                       </li>
                     ))}
