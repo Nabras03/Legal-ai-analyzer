@@ -6,6 +6,8 @@ A full-stack demo that uses Google's Gemini model to analyze legal text. Paste i
 
 Built as a learning project to practice full-stack LLM integration: prompt design, enforcing a strict JSON contract on model output, and checking the model's claims against the source text instead of trusting them.
 
+**Live demo: [legal-ai-analyzer-one.vercel.app/analyze](https://legal-ai-analyzer-one.vercel.app/analyze)** (the backend runs on a free plan and sleeps when idle, so the first analysis can take up to a minute)
+
 > **Disclaimer:** This is a portfolio/learning project, not a legal tool. It does not give legal advice and its output should not be relied on for real legal decisions.
 
 ## What it does
