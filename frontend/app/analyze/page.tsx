@@ -3,13 +3,16 @@
 import { useState } from "react";
 import Link from "next/link";
 
-// Mirrors the JSON shape app/api/analyze/route.ts promises to return.
+// Mirrors the Pydantic models in Backend/main.py.
 type Risk = {
   description: string;
   explanation: string;
   affectedParty: string;
   riskLevel: "low" | "medium" | "high";
   citation: string;
+  // Set by the backend: whether the quote was found in the analyzed text, and where.
+  citationVerified: boolean;
+  citationSpan: [number, number] | null;
 };
 
 type Definition = { term: string; definition: string };
@@ -24,6 +27,8 @@ type AnalysisResult =
       risks: Risk[];
     };
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8000";
+
 // Colour per risk level — used for both the badge text and its border/glow.
 const RISK_STYLES: Record<Risk["riskLevel"], string> = {
   low: "border-[rgba(120,255,150,0.5)] text-[#7dffa0] bg-[rgba(120,255,150,0.08)]",
@@ -31,11 +36,44 @@ const RISK_STYLES: Record<Risk["riskLevel"], string> = {
   high: "border-[#ff5c6a] text-[#ff5c6a] bg-[rgba(255,92,106,0.08)]",
 };
 
+// Background tint for the highlighted quote in the source text.
+const MARK_STYLES: Record<Risk["riskLevel"], string> = {
+  low: "bg-[rgba(120,255,150,0.2)]",
+  medium: "bg-[rgba(255,180,84,0.25)]",
+  high: "bg-[rgba(255,92,106,0.3)]",
+};
+
+type Segment = { text: string; risk?: { index: number; level: Risk["riskLevel"] } };
+
+// Splits the analyzed text into plain and highlighted pieces. Overlapping
+// citations are trimmed so each character is highlighted at most once.
+function highlightSegments(text: string, risks: Risk[]): Segment[] {
+  const spans = risks
+    .map((r, index) => ({ span: r.citationSpan, index, level: r.riskLevel }))
+    .filter((s): s is { span: [number, number]; index: number; level: Risk["riskLevel"] } => s.span !== null)
+    .sort((a, b) => a.span[0] - b.span[0]);
+
+  const segments: Segment[] = [];
+  let pos = 0;
+  for (const { span, index, level } of spans) {
+    const start = Math.max(span[0], pos);
+    if (start >= span[1]) continue;
+    if (start > pos) segments.push({ text: text.slice(pos, start) });
+    segments.push({ text: text.slice(start, span[1]), risk: { index, level } });
+    pos = span[1];
+  }
+  if (pos < text.length) segments.push({ text: text.slice(pos) });
+  return segments;
+}
+
 export default function AnalyzePage() {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<AnalysisResult | null>(null);
+  // The exact text that was analyzed; citation spans point into this, not the
+  // textarea, which the user may have edited since.
+  const [analyzedText, setAnalyzedText] = useState("");
 
   async function analyze(e: React.FormEvent) {
     e.preventDefault();
@@ -47,7 +85,7 @@ export default function AnalyzePage() {
     setResult(null);
 
     try {
-      const res = await fetch("http://127.0.0.1:8000/analyze", {
+      const res = await fetch(`${API_URL}/analyze`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text }),
@@ -64,6 +102,7 @@ export default function AnalyzePage() {
         setError(data.error);
       } else {
         setResult(data.result as AnalysisResult);
+        setAnalyzedText(text);
       }
     } catch {
       setError("Could not reach the FastAPI server. Is it running on port 8000?");
@@ -179,6 +218,25 @@ export default function AnalyzePage() {
                 )}
               </section>
 
+              {/* Source text with cited passages highlighted */}
+              {result.risks.some((r) => r.citationSpan) && (
+                <section>
+                  <p className="hud-readout text-[var(--hud-cyan)]">Cited Passages</p>
+                  <p className="hud-scroll mt-1 max-h-64 overflow-y-auto whitespace-pre-wrap border border-[rgba(53,224,255,0.25)] bg-[rgba(2,6,11,0.4)] px-3 py-2 font-[family-name:var(--font-geist-mono)] text-sm leading-relaxed text-[var(--hud-text)]">
+                    {highlightSegments(analyzedText, result.risks).map((seg, i) =>
+                      seg.risk ? (
+                        <mark key={i} className={`text-[var(--hud-text)] ${MARK_STYLES[seg.risk.level]}`}>
+                          {seg.text}
+                          <sup className="ml-0.5 text-[var(--hud-cyan)]">[{seg.risk.index + 1}]</sup>
+                        </mark>
+                      ) : (
+                        <span key={i}>{seg.text}</span>
+                      ),
+                    )}
+                  </p>
+                </section>
+              )}
+
               {/* Risks */}
               <section>
                 <p className="hud-readout text-[var(--hud-cyan)]">Risks</p>
@@ -194,12 +252,21 @@ export default function AnalyzePage() {
                         className={`border px-3 py-2.5 font-[family-name:var(--font-geist-mono)] text-sm ${RISK_STYLES[r.riskLevel]}`}
                       >
                         <div className="flex items-center justify-between gap-2">
-                          <span className="font-semibold">{r.description}</span>
+                          <span className="font-semibold">
+                            [{i + 1}] {r.description}
+                          </span>
                           <span className="hud-readout shrink-0">{r.riskLevel}</span>
                         </div>
                         <p className="mt-1 text-[var(--hud-text)]">{r.explanation}</p>
                         <p className="mt-1 text-[var(--hud-cyan-dim)]">Affects: {r.affectedParty}</p>
                         <p className="mt-1 text-[var(--hud-cyan-dim)]">Source: “{r.citation}”</p>
+                        {r.citationVerified ? (
+                          <p className="hud-readout mt-1 text-[#7dffa0]">✓ Quote found in text</p>
+                        ) : (
+                          <p className="hud-readout mt-1 text-[var(--hud-amber)]">
+                            ⚠ Quote not found in text — treat this finding with caution
+                          </p>
+                        )}
                       </li>
                     ))}
                   </ul>
