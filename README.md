@@ -57,18 +57,18 @@ Latest run (`gemini-3.5-flash-lite`, full report in [`Backend/eval/REPORT.md`](B
 | Flagged risks that are labelled risky (precision) | 90% (18/20) |
 | Contract citations verified in source text | 100% (20/20) |
 | Severity exact / within one level | 83% / 100% |
-| Expected Avtalslagen section cited | 100% (14/14) |
-| Expected section among top-5 retrieved | 100% (14/14) |
-| Correctly cites *no* section when none applies | **0% (0/2)** |
+| Expected Avtalslagen section cited | 100% (18/18) |
+| Expected section among top-5 retrieved | 100% (18/18) |
 | Statute quotes verified | 100% (27/27) |
 
 **What this shows:**
 - Clear-cut risks are found reliably, and retrieval puts the right section in front of the model every time.
-- The main weakness: when no section applies (a GDPR data-transfer term, a foreign-court clause), the model still reaches for 36 §, the general clause on unfair terms, as a catch-all. Its explanations are hedged ("could potentially"), but the labels say no section applies. This is the next thing to fix, ideally after adding more no-basis cases so a prompt change isn't tuned to just two examples.
+- **The labels were reviewed, and that changed the conclusion.** The first runs scored 0/2 on "cites no section when none applies": the model cited 36 § (the general clause on unfair terms) for a GDPR data-transfer term and a foreign-law/forum clause, which the original labels marked as outside Avtalslagen. Before changing the prompt, the disputed labels went to legal review, which found that 36 § can apply to both, and to two other clauses that had no label. The labels were corrected and the saved runs re-scored without new API calls. The model was right; tuning the prompt against the old labels would have made it worse.
+- Consequence: no case currently tests whether the model abstains when Avtalslagen truly doesn't apply. Given how broad 36 § is, such cases need legal input to write.
 - Severity disagreements all go one way: the model rates borderline terms *high* where the labels say *medium*.
 - The verification layer earns its place: in an earlier run the model quoted 37 § as "säkerheten ställd" where the statute says "ställts", and the check flagged it.
 
-**Caveats:** the cases were written to be clear-cut, so these numbers are an upper bound for messy real contracts; 23 cases is small; and model output varies between runs (two runs gave the same recall and section accuracy, with precision 82% and 90%). Re-score a saved run without API calls: `python evaluate.py --score eval/results/<run>.json`.
+**Caveats:** the cases were written to be clear-cut, so these numbers are an upper bound for messy real contracts; 23 cases is small; and model output varies between runs (two runs gave the same recall and section accuracy, with precision 82% and 90%, and one run had a single statute quote miscopied). Re-score a saved run without API calls: `python evaluate.py --score eval/results/<run>.json`.
 
 ## Running locally
 

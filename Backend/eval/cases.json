@@ -94,7 +94,7 @@
     "text": "1. Governing law. This Agreement shall be governed by the laws of the State of Delaware, USA, and all disputes shall be resolved exclusively in the courts of Delaware.\n2. Price. The price is SEK 40,000, payable on delivery.",
     "isLegal": true,
     "risks": [
-      {"anchor": "This Agreement shall be governed by the laws of the State of Delaware, USA, and all disputes shall be resolved exclusively in the courts of Delaware.", "level": "medium", "sections": []}
+      {"anchor": "This Agreement shall be governed by the laws of the State of Delaware, USA, and all disputes shall be resolved exclusively in the courts of Delaware.", "level": "medium", "sections": ["36 §"]}
     ],
     "benign": ["The price is SEK 40,000, payable on delivery."]
   },
@@ -103,7 +103,7 @@
     "text": "1. Data transfers. The Processor may transfer the Customer's personal data to any country, including countries outside the EU/EEA, without further safeguards.\n2. Term. This Agreement applies for as long as the Processor processes personal data on behalf of the Customer.",
     "isLegal": true,
     "risks": [
-      {"anchor": "The Processor may transfer the Customer's personal data to any country, including countries outside the EU/EEA, without further safeguards.", "level": "high", "sections": []}
+      {"anchor": "The Processor may transfer the Customer's personal data to any country, including countries outside the EU/EEA, without further safeguards.", "level": "high", "sections": ["36 §"]}
     ],
     "benign": []
   },
@@ -112,7 +112,7 @@
     "text": "1. Intellectual property. All intellectual property created by the Consultant, including pre-existing tools and know-how owned by the Consultant before this Agreement, shall transfer to the Client without additional compensation.\n2. Fees. The Client shall pay the Consultant SEK 1,100 per hour.",
     "isLegal": true,
     "risks": [
-      {"anchor": "All intellectual property created by the Consultant, including pre-existing tools and know-how owned by the Consultant before this Agreement, shall transfer to the Client without additional compensation.", "level": "high"}
+      {"anchor": "All intellectual property created by the Consultant, including pre-existing tools and know-how owned by the Consultant before this Agreement, shall transfer to the Client without additional compensation.", "level": "high", "sections": ["36 §"]}
     ],
     "benign": ["The Client shall pay the Consultant SEK 1,100 per hour."]
   },
@@ -130,7 +130,7 @@
     "text": "1. Confidentiality. The Recipient shall keep all information received from the Discloser confidential forever, regardless of whether the information later becomes public.\n2. Notices. Notices under this Agreement shall be sent by email to the addresses stated above.",
     "isLegal": true,
     "risks": [
-      {"anchor": "The Recipient shall keep all information received from the Discloser confidential forever, regardless of whether the information later becomes public.", "level": "medium"}
+      {"anchor": "The Recipient shall keep all information received from the Discloser confidential forever, regardless of whether the information later becomes public.", "level": "medium", "sections": ["36 §"]}
     ],
     "benign": ["Notices under this Agreement shall be sent by email to the addresses stated above."]
   },
