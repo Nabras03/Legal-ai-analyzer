@@ -71,4 +71,8 @@ Open [http://localhost:3000](http://localhost:3000). The Analyze page expects th
 
 ## Screenshots
 
-_Add a screenshot or short GIF of the Analyze page here before publishing._
+Analyzing a one-sided indemnification clause — note the model flags that it makes the Contractor liable even for the Client's own negligence, with a direct citation back to the source text:
+
+![Analyze page — clause input and summary](docs/analyze-high-risk-1.png)
+
+![Analyze page — flagged high-risk finding](docs/analyze-high-risk-2.png)
