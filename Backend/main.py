@@ -84,10 +84,15 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # byt till din frontend-domän i produktion
+    # Comma-separated, e.g. "https://my-app.vercel.app"; set in production.
+    allow_origins=os.environ.get("ALLOWED_ORIGINS", "http://localhost:3000").split(","),
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+# Roughly 8-10 pages. Keeps a public demo from spending quota on huge inputs.
+MAX_TEXT_CHARS = 20_000
 
 
 class AnalyzeRequest(BaseModel):
@@ -182,6 +187,8 @@ def run_analysis(text: str) -> LegalAnalysis | NotLegalAnalysis:
 def analyze(request: AnalyzeRequest):
     if not request.text.strip():
         return {"error": "No text provided to analyze."}
+    if len(request.text) > MAX_TEXT_CHARS:
+        return {"error": f"Text is too long ({len(request.text):,} characters). The limit is {MAX_TEXT_CHARS:,}."}
 
     try:
         result = run_analysis(request.text)

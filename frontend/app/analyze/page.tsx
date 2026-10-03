@@ -117,7 +117,9 @@ export default function AnalyzePage() {
         setAnalyzedText(text);
       }
     } catch {
-      setError("Could not reach the FastAPI server. Is it running on port 8000?");
+      setError(
+        "Could not reach the analysis server. If the demo has been idle, it can take up to a minute to wake up — try again shortly.",
+      );
     } finally {
       setLoading(false);
     }

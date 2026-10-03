@@ -104,5 +104,10 @@ def test_api_errors_become_friendly_messages(api, monkeypatch, error, message):
     assert message in api.post("/analyze", json={"text": CLAUSE}).json()["error"]
 
 
+def test_too_long_text_is_rejected_without_calling_gemini(api, monkeypatch):
+    monkeypatch.setattr(main, "run_analysis", _raise(AssertionError("should not be called")))
+    assert "too long" in api.post("/analyze", json={"text": "x" * (main.MAX_TEXT_CHARS + 1)}).json()["error"]
+
+
 def test_empty_text(api):
     assert api.post("/analyze", json={"text": "   "}).json() == {"error": "No text provided to analyze."}

@@ -72,6 +72,12 @@ Latest run (`gemini-3.5-flash-lite`, full report in [`Backend/eval/REPORT.md`](B
 
 **Caveats:** the cases were written to be clear-cut, so these numbers are an upper bound for messy real contracts; 23 cases is small; and model output varies between runs (two runs gave the same recall and section accuracy, with precision 82% and 90%, and one run had a single statute quote miscopied). Re-score a saved run without API calls: `python evaluate.py --score eval/results/<run>.json`.
 
+## Deployment
+
+- **Backend:** Render, from `render.yaml` (free plan; it sleeps when idle, so the first request after a while takes up to a minute). Set `GEMINI_API_KEY` and `ALLOWED_ORIGINS` (the frontend URL) in the Render dashboard.
+- **Frontend:** Vercel with root directory `frontend`. Set `NEXT_PUBLIC_API_URL` to the Render URL, and `GEMINI_API_KEY` for the Chat page.
+- Inputs are capped at 20,000 characters to keep a public demo from draining the API quota.
+
 ## Tests
 
 ```bash
@@ -80,7 +86,7 @@ pip install -r requirements-dev.txt
 pytest
 ```
 
-43 tests cover citation matching, statute parsing, the committed index, the legal-basis grounding rules (sections the model wasn't shown are dropped, statute quotes are verified), the API's error handling and the evaluation scoring. They replace the Gemini client with fakes, so they need no API key and use no quota. GitHub Actions runs them on every push, together with lint, type checking and a production build of the frontend (`.github/workflows/ci.yml`).
+44 tests cover citation matching, statute parsing, the committed index, the legal-basis grounding rules (sections the model wasn't shown are dropped, statute quotes are verified), the API's error handling and the evaluation scoring. They replace the Gemini client with fakes, so they need no API key and use no quota. GitHub Actions runs them on every push, together with lint, type checking and a production build of the frontend (`.github/workflows/ci.yml`).
 
 ## Running locally
 
