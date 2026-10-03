@@ -26,7 +26,9 @@ LEGAL = [{"index": 0, "legalBasis": [
 
 
 @pytest.fixture
-def api():
+def api(monkeypatch):
+    # A fresh, generous limiter per test so tests don't share request counts.
+    monkeypatch.setattr(main, "limiter", main.RateLimiter(per_minute=100, per_day=100, global_per_day=100))
     return TestClient(main.app)
 
 
@@ -107,6 +109,17 @@ def test_api_errors_become_friendly_messages(api, monkeypatch, error, message):
 def test_too_long_text_is_rejected_without_calling_gemini(api, monkeypatch):
     monkeypatch.setattr(main, "run_analysis", _raise(AssertionError("should not be called")))
     assert "too long" in api.post("/analyze", json={"text": "x" * (main.MAX_TEXT_CHARS + 1)}).json()["error"]
+
+
+def test_rate_limit_returns_429_without_calling_gemini(api, monkeypatch):
+    monkeypatch.setattr(main, "limiter", main.RateLimiter(per_minute=1, per_day=10, global_per_day=10))
+    monkeypatch.setattr(main, "run_analysis", lambda text: main.NotLegalAnalysis(isLegalDocument=False, reason="r"))
+    assert api.post("/analyze", json={"text": CLAUSE}).status_code == 200
+
+    monkeypatch.setattr(main, "run_analysis", _raise(AssertionError("should not be called")))
+    response = api.post("/analyze", json={"text": CLAUSE})
+    assert response.status_code == 429
+    assert "per minute" in response.json()["error"]
 
 
 def test_empty_text(api):

@@ -104,7 +104,9 @@ export default function AnalyzePage() {
       });
 
       if (!res.ok) {
-        setError(`Server responded with an error (HTTP ${res.status}).`);
+        // Errors like the rate limit (HTTP 429) come with a readable message.
+        const body = await res.json().catch(() => null);
+        setError(body?.error ?? `Server responded with an error (HTTP ${res.status}).`);
         return;
       }
 

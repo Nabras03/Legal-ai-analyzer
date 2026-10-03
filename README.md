@@ -76,7 +76,7 @@ Latest run (`gemini-3.5-flash-lite`, full report in [`Backend/eval/REPORT.md`](B
 
 - **Backend:** Render, from `render.yaml` (free plan; it sleeps when idle, so the first request after a while takes up to a minute). Set `GEMINI_API_KEY` and `ALLOWED_ORIGINS` (the frontend URL) in the Render dashboard.
 - **Frontend:** Vercel with root directory `frontend`. Set `NEXT_PUBLIC_API_URL` to the Render URL, and `GEMINI_API_KEY` for the Chat page.
-- Inputs are capped at 20,000 characters to keep a public demo from draining the API quota.
+- Abuse limits for the public demo: inputs are capped at 20,000 characters, and `/analyze` allows 5 requests per minute and 30 per day per IP, with a global cap of 300 per day (`Backend/rate_limit.py`). The Chat page runs on Vercel and is not rate-limited.
 
 ## Tests
 
@@ -86,7 +86,7 @@ pip install -r requirements-dev.txt
 pytest
 ```
 
-44 tests cover citation matching, statute parsing, the committed index, the legal-basis grounding rules (sections the model wasn't shown are dropped, statute quotes are verified), the API's error handling and the evaluation scoring. They replace the Gemini client with fakes, so they need no API key and use no quota. GitHub Actions runs them on every push, together with lint, type checking and a production build of the frontend (`.github/workflows/ci.yml`).
+50 tests cover citation matching, statute parsing, the committed index, the legal-basis grounding rules (sections the model wasn't shown are dropped, statute quotes are verified), the API's error handling, the rate limiter and the evaluation scoring. They replace the Gemini client with fakes, so they need no API key and use no quota. GitHub Actions runs them on every push, together with lint, type checking and a production build of the frontend (`.github/workflows/ci.yml`).
 
 ## Running locally
 

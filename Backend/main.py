@@ -3,8 +3,9 @@ import os
 from typing import Annotated, Literal, Union
 
 from dotenv import load_dotenv
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 from google import genai
 from google.genai import errors, types
 from pydantic import BaseModel, Field, TypeAdapter, ValidationError
@@ -12,6 +13,7 @@ from pydantic import BaseModel, Field, TypeAdapter, ValidationError
 import legal_check
 from citations import find_citation
 from legal_check import LegalBasis
+from rate_limit import RateLimiter, client_ip
 from retrieval import INDEX_PATH, LegalIndex
 
 load_dotenv()
@@ -90,6 +92,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
+# Each analysis makes two generation calls; the global cap keeps a public
+# demo well inside the free-tier daily quota.
+limiter = RateLimiter(per_minute=5, per_day=30, global_per_day=300)
 
 # Roughly 8-10 pages. Keeps a public demo from spending quota on huge inputs.
 MAX_TEXT_CHARS = 20_000
@@ -184,11 +190,13 @@ def run_analysis(text: str) -> LegalAnalysis | NotLegalAnalysis:
 
 
 @app.post("/analyze")
-def analyze(request: AnalyzeRequest):
+def analyze(request: AnalyzeRequest, http_request: Request):
     if not request.text.strip():
         return {"error": "No text provided to analyze."}
     if len(request.text) > MAX_TEXT_CHARS:
         return {"error": f"Text is too long ({len(request.text):,} characters). The limit is {MAX_TEXT_CHARS:,}."}
+    if refusal := limiter.check(client_ip(http_request)):
+        return JSONResponse({"error": refusal}, status_code=429)
 
     try:
         result = run_analysis(request.text)
