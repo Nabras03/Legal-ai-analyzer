@@ -12,7 +12,17 @@ from pydantic import BaseModel, Field, TypeAdapter, ValidationError
 from citations import find_citation
 
 load_dotenv()
-client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
+# Gemini's free tier often answers 503 "high demand" for a few seconds at a
+# time; retrying with backoff hides most of those. 429 (quota used up) is not
+# retried, since waiting seconds won't help.
+client = genai.Client(
+    api_key=os.environ["GEMINI_API_KEY"],
+    http_options=types.HttpOptions(
+        retry_options=types.HttpRetryOptions(
+            attempts=4, initial_delay=1.0, max_delay=8.0, http_status_codes=[503]
+        )
+    ),
+)
 
 # The JSON contract app/analyze/page.tsx renders. The Pydantic models below
 # mirror it, so a malformed model response is rejected here, not in the UI.
@@ -56,7 +66,8 @@ Rules:
 - "riskLevel" must be exactly one of: "low", "medium", "high" — no other values.
 - Output must be valid JSON and nothing else — no explanations, no markdown formatting, no surrounding text."""
 
-MODEL = "gemini-3.6-flash"
+# Flash-Lite has a far higher free-tier daily quota than Flash.
+MODEL = os.environ.get("GEMINI_MODEL", "gemini-3.5-flash-lite")
 ANALYZE_CONFIG = types.GenerateContentConfig(
     system_instruction=SYSTEM_PROMPT,
     response_mime_type="application/json",

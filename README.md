@@ -47,6 +47,8 @@ Create `Backend/.env`:
 
 ```
 GEMINI_API_KEY=your_key_here
+# Optional, defaults to gemini-3.5-flash-lite (highest free-tier quota)
+# GEMINI_MODEL=gemini-3.6-flash
 ```
 
 ```bash

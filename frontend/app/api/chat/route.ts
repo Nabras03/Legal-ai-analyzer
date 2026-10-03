@@ -27,7 +27,7 @@ export async function POST(request: Request) {
     }));
 
     const response = await ai.models.generateContent({
-      model: "gemini-3.6-flash", // fast + free tier; see aistudio.google.com for other model names
+      model: "gemini-3.5-flash-lite", // highest free-tier quota; see aistudio.google.com for other model names
       contents,
     });
 
