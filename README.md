@@ -8,6 +8,8 @@ Built as a learning project to practice full-stack LLM integration: prompt desig
 
 **Live demo: [legal-ai-analyzer-one.vercel.app/analyze](https://legal-ai-analyzer-one.vercel.app/analyze)** (the backend runs on a free plan and sleeps when idle, so the first analysis can take up to a minute)
 
+![A flagged risk with its verified citation and legal basis in Avtalslagen](docs/analyze-legal-basis.png)
+
 > **Disclaimer:** This is a portfolio/learning project, not a legal tool. It does not give legal advice and its output should not be relied on for real legal decisions.
 
 ## What it does
@@ -140,8 +142,16 @@ Open [http://localhost:3000](http://localhost:3000). The Analyze page expects th
 
 ## Screenshots
 
-Analyzing a one-sided indemnification clause — note the model flags that it makes the Contractor liable even for the Client's own negligence, with a direct citation back to the source text:
+All three are from the live demo, analyzing a one-sided service agreement.
 
-![Analyze page — clause input and summary](docs/analyze-high-risk-1.png)
+Summary and document type:
 
-![Analyze page — flagged high-risk finding](docs/analyze-high-risk-2.png)
+![Analyze page — contract input, document type and summary](docs/analyze-overview.png)
+
+Cited passages highlighted in the contract and numbered by risk. Only verified quotes can be highlighted; the ordinary payment clause (3.1) is correctly left alone:
+
+![Cited passages highlighted in the source contract](docs/analyze-cited-passages.png)
+
+A risk card with its legal basis: the model links a clause forfeiting the customer's security to 37 § Avtalslagen, which makes such forfeiture terms void, and to 36 §. Both statute quotes were verified against the statute text:
+
+![Risk card with legal basis in Avtalslagen 37 § and 36 §](docs/analyze-legal-basis.png)
