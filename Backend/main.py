@@ -2,17 +2,17 @@ import json
 import os
 from typing import Annotated, Literal, Union
 
-import google.generativeai as genai
 from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from google.api_core.exceptions import ResourceExhausted
+from google import genai
+from google.genai import errors, types
 from pydantic import BaseModel, Field, TypeAdapter, ValidationError
 
 from citations import find_citation
 
 load_dotenv()
-genai.configure(api_key=os.environ["GEMINI_API_KEY"])
+client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
 
 # The JSON contract app/analyze/page.tsx renders. The Pydantic models below
 # mirror it, so a malformed model response is rejected here, not in the UI.
@@ -56,10 +56,10 @@ Rules:
 - "riskLevel" must be exactly one of: "low", "medium", "high" — no other values.
 - Output must be valid JSON and nothing else — no explanations, no markdown formatting, no surrounding text."""
 
-model = genai.GenerativeModel(
-    "gemini-3.6-flash",
+MODEL = "gemini-3.6-flash"
+ANALYZE_CONFIG = types.GenerateContentConfig(
     system_instruction=SYSTEM_PROMPT,
-    generation_config={"response_mime_type": "application/json"},
+    response_mime_type="application/json",
 )
 
 app = FastAPI()
@@ -128,14 +128,18 @@ def analyze(request: AnalyzeRequest):
         return {"error": "No text provided to analyze."}
 
     try:
-        response = model.generate_content(
-            request.text, request_options={"retry": None}
+        response = client.models.generate_content(
+            model=MODEL, contents=request.text, config=ANALYZE_CONFIG
         )
-    except ResourceExhausted:
-        return {"error": "Gemini API rate limit reached. Wait a bit and try again."}
+    except errors.ClientError as e:
+        if e.code == 429:
+            return {"error": "Gemini API rate limit reached. Wait a bit and try again."}
+        raise
+    except errors.ServerError:
+        return {"error": "Gemini is temporarily unavailable. Try again in a moment."}
 
     try:
-        result = analysis_adapter.validate_python(json.loads(response.text))
+        result = analysis_adapter.validate_python(json.loads(response.text or ""))
     except (json.JSONDecodeError, ValidationError):
         return {"error": "The model returned an unexpected format."}
 
