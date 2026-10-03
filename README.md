@@ -1,5 +1,7 @@
 # Legal AI Text Analyzer
 
+[![CI](https://github.com/Nabras03/Legal-ai-analyzer/actions/workflows/ci.yml/badge.svg)](https://github.com/Nabras03/Legal-ai-analyzer/actions/workflows/ci.yml)
+
 A full-stack demo that uses Google's Gemini model to analyze legal text. Paste in a clause or document and it flags risky terms, extracts defined terms, and summarizes the content — returning structured JSON instead of a wall of prose, so the frontend can render it as data (risk badges, a definitions list, citations) rather than just displaying raw model text.
 
 Built as a learning project to practice full-stack LLM integration: prompt design, enforcing a strict JSON contract on model output, and checking the model's claims against the source text instead of trusting them.
@@ -69,6 +71,16 @@ Latest run (`gemini-3.5-flash-lite`, full report in [`Backend/eval/REPORT.md`](B
 - The verification layer earns its place: in an earlier run the model quoted 37 § as "säkerheten ställd" where the statute says "ställts", and the check flagged it.
 
 **Caveats:** the cases were written to be clear-cut, so these numbers are an upper bound for messy real contracts; 23 cases is small; and model output varies between runs (two runs gave the same recall and section accuracy, with precision 82% and 90%, and one run had a single statute quote miscopied). Re-score a saved run without API calls: `python evaluate.py --score eval/results/<run>.json`.
+
+## Tests
+
+```bash
+cd Backend
+pip install -r requirements-dev.txt
+pytest
+```
+
+43 tests cover citation matching, statute parsing, the committed index, the legal-basis grounding rules (sections the model wasn't shown are dropped, statute quotes are verified), the API's error handling and the evaluation scoring. They replace the Gemini client with fakes, so they need no API key and use no quota. GitHub Actions runs them on every push, together with lint, type checking and a production build of the frontend (`.github/workflows/ci.yml`).
 
 ## Running locally
 
