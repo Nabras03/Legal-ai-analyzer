@@ -82,12 +82,18 @@ def _section_id(raw: str) -> str | None:
     return f"{m.group(0)} §" if m else None
 
 
+def risk_query(risk: RiskLike) -> str:
+    """The search query for a risk: its description and reasoning carry the
+    words ("unfair", "one-sided") that the clause text alone often lacks."""
+    return f"{risk.description}. {risk.explanation} Clause: {risk.citation}"
+
+
 def assess(client: genai.Client, model: str, index: LegalIndex, risks: list[RiskLike]) -> list[list[LegalBasis]]:
     """Return the verified legal basis for each risk, in the same order."""
     if not risks:
         return []
 
-    queries = [f"{r.description}. {r.explanation} Clause: {r.citation}" for r in risks]
+    queries = [risk_query(r) for r in risks]
     candidates = index.search(client, queries, k=CANDIDATES_PER_RISK)
 
     payload = [

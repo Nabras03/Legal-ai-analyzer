@@ -1,0 +1,200 @@
+[
+  {
+    "id": "indemnity-own-negligence",
+    "text": "1. Indemnification. The Contractor shall indemnify and hold harmless the Client from any and all claims, including claims arising from the Client's own negligence.\n2. Payment. Invoices are payable within 30 days of receipt.",
+    "isLegal": true,
+    "risks": [
+      {"anchor": "The Contractor shall indemnify and hold harmless the Client from any and all claims, including claims arising from the Client's own negligence.", "level": "high", "sections": ["36 §"]}
+    ],
+    "benign": ["Invoices are payable within 30 days of receipt."]
+  },
+  {
+    "id": "non-compete-employee",
+    "text": "1. Non-competition. For ten (10) years after the end of employment, the Employee shall not work for any competitor anywhere in the world.\n2. Vacation. The Employee is entitled to 25 days of paid vacation per year.",
+    "isLegal": true,
+    "risks": [
+      {"anchor": "For ten (10) years after the end of employment, the Employee shall not work for any competitor anywhere in the world.", "level": "high", "sections": ["38 §"]}
+    ],
+    "benign": ["The Employee is entitled to 25 days of paid vacation per year."]
+  },
+  {
+    "id": "konkurrensklausul-sv",
+    "text": "1. Konkurrensbegränsning. Konsulten får under fem (5) år efter uppdragets slut inte bedriva konkurrerande verksamhet eller ta anställning hos någon konkurrent i Norden.\n2. Arvode. Arvode utgår med 950 kronor per timme exklusive moms.",
+    "isLegal": true,
+    "risks": [
+      {"anchor": "Konsulten får under fem (5) år efter uppdragets slut inte bedriva konkurrerande verksamhet eller ta anställning hos någon konkurrent i Norden.", "level": "high", "sections": ["38 §"]}
+    ],
+    "benign": ["Arvode utgår med 950 kronor per timme exklusive moms."]
+  },
+  {
+    "id": "liability-cap-gross-negligence",
+    "text": "1. Limitation of liability. The Supplier's total liability under this Agreement shall not exceed SEK 100, including in cases of gross negligence or intent.\n2. Costs. Each party shall bear its own costs for entering into this Agreement.",
+    "isLegal": true,
+    "risks": [
+      {"anchor": "The Supplier's total liability under this Agreement shall not exceed SEK 100, including in cases of gross negligence or intent.", "level": "high", "sections": ["36 §"]}
+    ],
+    "benign": ["Each party shall bear its own costs for entering into this Agreement."]
+  },
+  {
+    "id": "prishojning-sv",
+    "text": "1. Pris. Leverantören har rätt att när som helst och utan föregående meddelande höja priserna med valfritt belopp.\n2. Giltighet. Avtalet gäller från den dag det undertecknas av båda parter.",
+    "isLegal": true,
+    "risks": [
+      {"anchor": "Leverantören har rätt att när som helst och utan föregående meddelande höja priserna med valfritt belopp.", "level": "high", "sections": ["36 §"]}
+    ],
+    "benign": ["Avtalet gäller från den dag det undertecknas av båda parter."]
+  },
+  {
+    "id": "forfeiture-of-security",
+    "text": "1. Loan. The Lender lends the Borrower SEK 200,000.\n2. Security. If any payment is more than three (3) days late, the equipment pledged as security shall automatically become the property of the Lender, without any settlement of its value against the debt.",
+    "isLegal": true,
+    "risks": [
+      {"anchor": "If any payment is more than three (3) days late, the equipment pledged as security shall automatically become the property of the Lender, without any settlement of its value against the debt.", "level": "high", "sections": ["37 §", "36 §"]}
+    ],
+    "benign": ["The Lender lends the Borrower SEK 200,000."]
+  },
+  {
+    "id": "pant-forverkande-sv",
+    "text": "1. Lån. Långivaren lånar ut 80 000 kronor till låntagaren, som ska återbetalas senast den 31 december 2027.\n2. Pant. Om låntagaren inte betalar i rätt tid ska den pantsatta bilen utan vidare tillfalla långivaren, oavsett bilens värde i förhållande till skulden.",
+    "isLegal": true,
+    "risks": [
+      {"anchor": "Om låntagaren inte betalar i rätt tid ska den pantsatta bilen utan vidare tillfalla långivaren, oavsett bilens värde i förhållande till skulden.", "level": "high", "sections": ["37 §", "36 §"]}
+    ],
+    "benign": []
+  },
+  {
+    "id": "short-acceptance-window",
+    "text": "1. Offer. This offer lapses unless the Buyer's written acceptance reaches the Seller within two (2) hours of the time this offer is sent.\n2. Delivery. Delivery shall take place at the Buyer's premises in Malmö.",
+    "isLegal": true,
+    "risks": [
+      {"anchor": "This offer lapses unless the Buyer's written acceptance reaches the Seller within two (2) hours of the time this offer is sent.", "level": "medium", "sections": ["2 §", "3 §", "4 §"]}
+    ],
+    "benign": ["Delivery shall take place at the Buyer's premises in Malmö."]
+  },
+  {
+    "id": "one-sided-termination",
+    "text": "1. Termination. The Client may terminate this Agreement at any time without notice, while the Consultant may terminate only with twelve (12) months' notice.\n2. Governing law. This Agreement is governed by Swedish law.",
+    "isLegal": true,
+    "risks": [
+      {"anchor": "The Client may terminate this Agreement at any time without notice, while the Consultant may terminate only with twelve (12) months' notice.", "level": "high", "sections": ["36 §"]}
+    ],
+    "benign": ["This Agreement is governed by Swedish law."]
+  },
+  {
+    "id": "long-auto-renewal",
+    "text": "1. Term. This Agreement automatically renews for successive five-year periods unless the Customer gives notice of termination at least eighteen (18) months before the end of the current period.\n2. Support. The Supplier provides support on weekdays between 08:00 and 17:00.",
+    "isLegal": true,
+    "risks": [
+      {"anchor": "This Agreement automatically renews for successive five-year periods unless the Customer gives notice of termination at least eighteen (18) months before the end of the current period.", "level": "medium", "sections": ["36 §"]}
+    ],
+    "benign": ["The Supplier provides support on weekdays between 08:00 and 17:00."]
+  },
+  {
+    "id": "foreign-law-and-forum",
+    "text": "1. Governing law. This Agreement shall be governed by the laws of the State of Delaware, USA, and all disputes shall be resolved exclusively in the courts of Delaware.\n2. Price. The price is SEK 40,000, payable on delivery.",
+    "isLegal": true,
+    "risks": [
+      {"anchor": "This Agreement shall be governed by the laws of the State of Delaware, USA, and all disputes shall be resolved exclusively in the courts of Delaware.", "level": "medium", "sections": []}
+    ],
+    "benign": ["The price is SEK 40,000, payable on delivery."]
+  },
+  {
+    "id": "gdpr-transfer",
+    "text": "1. Data transfers. The Processor may transfer the Customer's personal data to any country, including countries outside the EU/EEA, without further safeguards.\n2. Term. This Agreement applies for as long as the Processor processes personal data on behalf of the Customer.",
+    "isLegal": true,
+    "risks": [
+      {"anchor": "The Processor may transfer the Customer's personal data to any country, including countries outside the EU/EEA, without further safeguards.", "level": "high", "sections": []}
+    ],
+    "benign": []
+  },
+  {
+    "id": "ip-incl-pre-existing",
+    "text": "1. Intellectual property. All intellectual property created by the Consultant, including pre-existing tools and know-how owned by the Consultant before this Agreement, shall transfer to the Client without additional compensation.\n2. Fees. The Client shall pay the Consultant SEK 1,100 per hour.",
+    "isLegal": true,
+    "risks": [
+      {"anchor": "All intellectual property created by the Consultant, including pre-existing tools and know-how owned by the Consultant before this Agreement, shall transfer to the Client without additional compensation.", "level": "high"}
+    ],
+    "benign": ["The Client shall pay the Consultant SEK 1,100 per hour."]
+  },
+  {
+    "id": "vite-sv",
+    "text": "1. Leverans. Leverans ska ske senast den 1 juni 2027.\n2. Vite. Vid försenad leverans utgår vite med 50 procent av kontraktssumman per påbörjad dag.",
+    "isLegal": true,
+    "risks": [
+      {"anchor": "Vid försenad leverans utgår vite med 50 procent av kontraktssumman per påbörjad dag.", "level": "high", "sections": ["36 §"]}
+    ],
+    "benign": ["Leverans ska ske senast den 1 juni 2027."]
+  },
+  {
+    "id": "perpetual-confidentiality",
+    "text": "1. Confidentiality. The Recipient shall keep all information received from the Discloser confidential forever, regardless of whether the information later becomes public.\n2. Notices. Notices under this Agreement shall be sent by email to the addresses stated above.",
+    "isLegal": true,
+    "risks": [
+      {"anchor": "The Recipient shall keep all information received from the Discloser confidential forever, regardless of whether the information later becomes public.", "level": "medium"}
+    ],
+    "benign": ["Notices under this Agreement shall be sent by email to the addresses stated above."]
+  },
+  {
+    "id": "unilateral-amendment",
+    "text": "1. Changes. The Provider may amend these Terms at any time by posting the amended Terms on its website, and the User's continued use of the service constitutes acceptance of the amended Terms.\n2. Fees. The subscription fee is SEK 99 per month.",
+    "isLegal": true,
+    "risks": [
+      {"anchor": "The Provider may amend these Terms at any time by posting the amended Terms on its website, and the User's continued use of the service constitutes acceptance of the amended Terms.", "level": "high", "sections": ["36 §"]}
+    ],
+    "benign": ["The subscription fee is SEK 99 per month."]
+  },
+  {
+    "id": "felansvar-ond-tro-sv",
+    "text": "1. Köpeskilling. Köpeskillingen är 350 000 kronor och betalas på tillträdesdagen.\n2. Fel. Köparen avstår från alla anspråk mot säljaren på grund av fel i varan, även om säljaren kände till felet och inte upplyste om det.",
+    "isLegal": true,
+    "risks": [
+      {"anchor": "Köparen avstår från alla anspråk mot säljaren på grund av fel i varan, även om säljaren kände till felet och inte upplyste om det.", "level": "high", "sections": ["36 §", "33 §", "30 §"]}
+    ],
+    "benign": ["Köpeskillingen är 350 000 kronor och betalas på tillträdesdagen."]
+  },
+  {
+    "id": "usurious-interest",
+    "text": "1. Loan. The Lender lends the Borrower SEK 10,000.\n2. Interest. The Borrower shall repay the loan together with interest of 25 percent per month.",
+    "isLegal": true,
+    "risks": [
+      {"anchor": "The Borrower shall repay the loan together with interest of 25 percent per month.", "level": "high", "sections": ["31 §", "36 §"]}
+    ],
+    "benign": []
+  },
+  {
+    "id": "balanced-sale",
+    "text": "1. Delivery. The Seller shall deliver 500 office chairs to the Buyer no later than 1 March 2027.\n2. Price. The price is SEK 1,200 per chair, payable within 30 days of delivery.\n3. Defects. The Seller shall replace defective chairs free of charge if the Buyer gives notice within 14 days of delivery.\n4. Governing law. This Agreement is governed by Swedish law.",
+    "isLegal": true,
+    "risks": [],
+    "benign": [
+      "The Seller shall deliver 500 office chairs to the Buyer no later than 1 March 2027.",
+      "The price is SEK 1,200 per chair, payable within 30 days of delivery.",
+      "This Agreement is governed by Swedish law."
+    ]
+  },
+  {
+    "id": "balanced-service-sv",
+    "text": "1. Uppdrag. Konsulten ska utveckla en webbplats enligt bilaga 1.\n2. Ersättning. Ersättning utgår med 120 000 kronor, varav hälften betalas vid start och hälften vid leverans.\n3. Uppsägning. Vardera parten får säga upp avtalet med en månads uppsägningstid.\n4. Tvist. Tvist ska avgöras av allmän domstol.",
+    "isLegal": true,
+    "risks": [],
+    "benign": [
+      "Ersättning utgår med 120 000 kronor, varav hälften betalas vid start och hälften vid leverans.",
+      "Vardera parten får säga upp avtalet med en månads uppsägningstid."
+    ]
+  },
+  {
+    "id": "not-legal-grocery",
+    "text": "milk, eggs, 2 kg potatoes, coffee, bread, bananas",
+    "isLegal": false
+  },
+  {
+    "id": "not-legal-email",
+    "text": "Hi Anna! Are we still on for lunch on Friday? I was thinking of that new Thai place near the station. Let me know, /Erik",
+    "isLegal": false
+  },
+  {
+    "id": "not-legal-recipe",
+    "text": "Pannkakor: vispa ihop 2,5 dl vetemjöl, 6 dl mjölk och 3 ägg. Låt smeten vila en stund och stek tunna pannkakor i smör.",
+    "isLegal": false
+  }
+]

@@ -1,0 +1,922 @@
+{
+ "timestamp": "2026-10-03T21:38:34",
+ "model": "gemini-3.5-flash-lite",
+ "embeddingModel": "gemini-embedding-001",
+ "outputs": {
+  "indemnity-own-negligence": {
+   "output": {
+    "isLegalDocument": true,
+    "summary": "This document outlines an indemnification obligation where the Contractor must hold the Client harmless from all claims, including those caused by the Client's own negligence. Additionally, it establishes a payment term requiring invoices to be settled within 30 days of receipt. Together, these clauses allocate liability and define payment expectations between the parties.",
+    "documentType": "Indemnification and payment clause",
+    "definitions": [],
+    "risks": [
+     {
+      "description": "Contractor assumes liability for the Client's negligence",
+      "explanation": "The Contractor is required to indemnify the Client even for claims that arise due to the Client's own negligent actions, placing an unfair burden of risk on the Contractor.",
+      "affectedParty": "Contractor",
+      "riskLevel": "high",
+      "citation": "The Contractor shall indemnify and hold harmless the Client from any and all claims, including claims arising from the Client's own negligence.",
+      "citationVerified": true,
+      "citationSpan": [
+       20,
+       162
+      ],
+      "legalBasis": [
+       {
+        "section": "36 §",
+        "law": "AvtL",
+        "quote": "Avtalsvillkor får jämkas eller lämnas utan avseende, om villkoret är oskäligt med hänsyn till avtalets innehåll, omständigheterna vid avtalets tillkomst, senare inträffade förhållanden och omständigheterna i övrigt.",
+        "explanation": "This term could potentially be considered unreasonable regarding the content of the agreement, as it shifts liability for the client's own negligence onto the contractor, and might therefore be adjusted or set aside under Section 36.",
+        "url": "https://lagen.nu/1915:218#P36",
+        "quoteVerified": true
+       }
+      ],
+      "retrieved": [
+       "31 §",
+       "36 §",
+       "33 §",
+       "30 §",
+       "32 §"
+      ]
+     }
+    ],
+    "legalCheckAvailable": true
+   },
+   "seconds": 2.9
+  },
+  "non-compete-employee": {
+   "output": {
+    "isLegalDocument": true,
+    "summary": "This document outlines post-employment restrictions and vacation benefits for an employee. It imposes a ten-year global non-compete obligation following the termination of employment. Additionally, it grants the employee twenty-five days of paid vacation annually.",
+    "documentType": "Employment contract",
+    "definitions": [],
+    "risks": [
+     {
+      "description": "Excessively broad and lengthy non-competition restriction",
+      "explanation": "A ten-year restriction spanning the entire world is exceptionally broad in both duration and geographic scope, which may severely limit the employee's future employment opportunities and could potentially be unenforceable under applicable laws.",
+      "affectedParty": "Employee",
+      "riskLevel": "high",
+      "citation": "For ten (10) years after the end of employment, the Employee shall not work for any competitor anywhere in the world.",
+      "citationVerified": true,
+      "citationSpan": [
+       20,
+       136
+      ],
+      "legalBasis": [
+       {
+        "section": "38 §",
+        "law": "AvtL",
+        "quote": "är den som gjort utfästelsen icke bunden därav i den mån utfästelsen sträcker sig längre än vad som kan anses skäligt",
+        "explanation": "A non-competition clause that is excessively broad in duration or scope could be considered unreasonable under this section and may not bind the employee to the extent it exceeds what is deemed reasonable.",
+        "url": "https://lagen.nu/1915:218#P38",
+        "quoteVerified": true
+       },
+       {
+        "section": "36 §",
+        "law": "AvtL",
+        "quote": "Avtalsvillkor får jämkas eller lämnas utan avseende, om villkoret är oskäligt",
+        "explanation": "The unreasonable scope and duration of the non-competition restriction could potentially lead to the clause being adjusted or set aside as unfair under the general contract adjustment rule.",
+        "url": "https://lagen.nu/1915:218#P36",
+        "quoteVerified": true
+       }
+      ],
+      "retrieved": [
+       "38 §",
+       "36 §",
+       "31 §",
+       "33 §",
+       "11 §"
+      ]
+     }
+    ],
+    "legalCheckAvailable": true
+   },
+   "seconds": 3.0
+  },
+  "konkurrensklausul-sv": {
+   "output": {
+    "isLegalDocument": true,
+    "summary": "This document outlines a non-compete clause and a fee structure for a consultant. The consultant is prohibited from engaging in competing activities or working for a competitor in the Nordic region for five years following the end of the assignment. Additionally, the consultant's fee is set at 950 SEK per hour excluding VAT.",
+    "documentType": "Consultancy contract clause",
+    "definitions": [],
+    "risks": [
+     {
+      "description": "Extended non-compete restriction period and geographical scope",
+      "explanation": "A five-year restriction covering the entire Nordic region is unusually long and broad for a consultancy assignment, which may severely limit the consultant's future employment and business opportunities.",
+      "affectedParty": "Konsulten",
+      "riskLevel": "high",
+      "citation": "Konsulten får under fem (5) år efter uppdragets slut inte bedriva konkurrerande verksamhet eller ta anställning hos någon konkurrent i Norden.",
+      "citationVerified": true,
+      "citationSpan": [
+       26,
+       167
+      ],
+      "legalBasis": [
+       {
+        "section": "38 §",
+        "law": "AvtL",
+        "quote": "är den som gjort utfästelsen icke bunden därav i den mån utfästelsen sträcker sig längre än vad som kan anses skäligt.",
+        "explanation": "This section specifically addresses non-compete clauses and could apply if the five-year restriction and Nordic-wide scope are deemed to extend further than what is considered reasonable.",
+        "url": "https://lagen.nu/1915:218#P38",
+        "quoteVerified": true
+       },
+       {
+        "section": "36 §",
+        "law": "AvtL",
+        "quote": "Avtalsvillkor får jämkas eller lämnas utan avseende, om villkoret är oskäligt med hänsyn till avtalets innehåll, omständigheterna vid avtalets tillkomst, senare inträffade förhållanden och omständigheterna i övrigt.",
+        "explanation": "This general contract adjustment rule could potentially apply to modify or set aside the non-compete clause if its broad geographic and temporal scope renders it unfair.",
+        "url": "https://lagen.nu/1915:218#P36",
+        "quoteVerified": true
+       }
+      ],
+      "retrieved": [
+       "38 §",
+       "36 §",
+       "5 §",
+       "31 §",
+       "9 §"
+      ]
+     }
+    ],
+    "legalCheckAvailable": true
+   },
+   "seconds": 3.1
+  },
+  "liability-cap-gross-negligence": {
+   "output": {
+    "isLegalDocument": true,
+    "summary": "This document outlines the limitation of liability and cost allocation for an agreement. It caps the Supplier's total liability at SEK 100, specifically including cases of gross negligence or intent. Additionally, it states that each party is responsible for its own costs incurred while entering into the agreement.",
+    "documentType": "Limitation of liability clause",
+    "definitions": [],
+    "risks": [
+     {
+      "description": "Extremely low liability cap for the Supplier, even in cases of gross negligence or intent.",
+      "explanation": "Limiting liability to SEK 100 for all breaches, including gross negligence or intentional misconduct, heavily disfavors the non-supplier party by removing meaningful financial recourse or deterrence.",
+      "affectedParty": "The Customer",
+      "riskLevel": "high",
+      "citation": "The Supplier's total liability under this Agreement shall not exceed SEK 100, including in cases of gross negligence or intent.",
+      "citationVerified": true,
+      "citationSpan": [
+       28,
+       154
+      ],
+      "legalBasis": [
+       {
+        "section": "36 §",
+        "law": "AvtL",
+        "quote": "Avtalsvillkor får jämkas eller lämnas utan avseende, om villkoret är oskäligt med hänsyn till avtalets innehåll, omständigheterna vid avtalets tillkomst, senare inträffade förhållanden och omständigheterna i övrigt.",
+        "explanation": "This section could be applied to adjust or set aside the extreme liability limitation if it is deemed unconscionable considering the contract's content and circumstances.",
+        "url": "https://lagen.nu/1915:218#P36",
+        "quoteVerified": true
+       }
+      ],
+      "retrieved": [
+       "31 §",
+       "36 §",
+       "30 §",
+       "33 §",
+       "9 §"
+      ]
+     }
+    ],
+    "legalCheckAvailable": true
+   },
+   "seconds": 3.2
+  },
+  "prishojning-sv": {
+   "output": {
+    "isLegalDocument": true,
+    "summary": "This document outlines the pricing and validity terms of an agreement. It grants the supplier the unilateral right to increase prices at any time without prior notice. Additionally, it establishes that the agreement becomes valid on the date it is signed by both parties.",
+    "documentType": "Service or supply agreement clause",
+    "definitions": [],
+    "risks": [
+     {
+      "description": "Unilateral price increases without notice",
+      "explanation": "The customer faces unpredictable and potentially significant financial increases because the supplier can raise prices arbitrarily at any time without warning.",
+      "affectedParty": "The customer",
+      "riskLevel": "high",
+      "citation": "Leverantören har rätt att när som helst och utan föregående meddelande höja priserna med valfritt belopp.",
+      "citationVerified": true,
+      "citationSpan": [
+       9,
+       113
+      ],
+      "legalBasis": [
+       {
+        "section": "36 §",
+        "law": "AvtL",
+        "quote": "Avtalsvillkor får jämkas eller lämnas utan avseende, om villkoret är oskäligt med hänsyn till avtalets innehåll, omständigheterna vid avtalets tillkomst, senare inträffade förhållanden och omständigheterna i övrigt.",
+        "explanation": "A term allowing unilateral price increases without notice could potentially be considered unfair under this section regarding the content of the contract and later circumstances, and may thus be adjusted or set aside.",
+        "url": "https://lagen.nu/1915:218#P36",
+        "quoteVerified": true
+       }
+      ],
+      "retrieved": [
+       "31 §",
+       "36 §",
+       "9 §",
+       "37 §",
+       "33 §"
+      ]
+     }
+    ],
+    "legalCheckAvailable": true
+   },
+   "seconds": 2.9
+  },
+  "forfeiture-of-security": {
+   "output": {
+    "isLegalDocument": true,
+    "summary": "The lender provides a loan of SEK 200,000 to the borrower. The agreement includes a security clause stating that pledged equipment automatically becomes the lender's property if any payment is over three days late, without value settlement against the debt.",
+    "documentType": "Loan agreement",
+    "definitions": [
+     {
+      "term": "Lender",
+      "definition": "The entity that lends the Borrower SEK 200,000."
+     },
+     {
+      "term": "Borrower",
+      "definition": "The entity that receives the loan of SEK 200,000 from the Lender."
+     }
+    ],
+    "risks": [
+     {
+      "description": "Automatic forfeiture of pledged equipment for minor payment delays",
+      "explanation": "Pledged equipment becomes the lender's property if a payment is late by more than three days, without any credit or settlement of the equipment's value against the remaining debt.",
+      "affectedParty": "Borrower",
+      "riskLevel": "high",
+      "citation": "If any payment is more than three (3) days late, the equipment pledged as security shall automatically become the property of the Lender, without any settlement of its value against the debt.",
+      "citationVerified": true,
+      "citationSpan": [
+       65,
+       255
+      ],
+      "legalBasis": [
+       {
+        "section": "37 §",
+        "law": "AvtL",
+        "quote": "Förbehåll att pant eller annan säkerhet skall vara förverkad, om den förpliktelse för vars fullgörande säkerheten ställts icke rätteligen fullgöres, är utan verkan.",
+        "explanation": "The clause contains a forfeiture reservation regarding pledged equipment upon delayed payment, which could be rendered void directly under this section.",
+        "url": "https://lagen.nu/1915:218#P37",
+        "quoteVerified": true
+       },
+       {
+        "section": "36 §",
+        "law": "AvtL",
+        "quote": "Avtalsvillkor får jämkas eller lämnas utan avseende, om villkoret är oskäligt med hänsyn till avtalets innehåll, omständigheterna vid avtalets tillkomst, senare inträffade förhållanden och omständigheterna i övrigt.",
+        "explanation": "The severe disproportion in automatically forfeiting equipment for a minor payment delay without credit or value settlement could cause the term to be considered unreasonable and adjusted or set aside.",
+        "url": "https://lagen.nu/1915:218#P36",
+        "quoteVerified": true
+       }
+      ],
+      "retrieved": [
+       "37 §",
+       "35 §",
+       "31 §",
+       "36 §",
+       "33 §"
+      ]
+     }
+    ],
+    "legalCheckAvailable": true
+   },
+   "seconds": 3.2
+  },
+  "pant-forverkande-sv": {
+   "output": {
+    "isLegalDocument": true,
+    "summary": "This document is a loan agreement where the lender provides 80,000 kronor to the borrower, repayable by December 31, 2027. It includes a pledge clause stating that if the borrower fails to pay on time, the pledged car will automatically transfer to the lender regardless of its value compared to the debt.",
+    "documentType": "Loan agreement with pledge clause",
+    "definitions": [],
+    "risks": [
+     {
+      "description": "Loss of pledged asset regardless of debt proportion",
+      "explanation": "The forfeiture clause allows the lender to take ownership of the car for late payment without accounting for whether the car's value exceeds the remaining debt, potentially resulting in a disproportionate loss for the borrower.",
+      "affectedParty": "Låntagaren",
+      "riskLevel": "high",
+      "citation": "Om låntagaren inte betalar i rätt tid ska den pantsatta bilen utan vidare tillfalla långivaren, oavsett bilens värde i förhållande till skulden.",
+      "citationVerified": true,
+      "citationSpan": [
+       117,
+       260
+      ],
+      "legalBasis": [
+       {
+        "section": "37 §",
+        "law": "AvtL",
+        "quote": "Förbehåll att pant eller annan säkerhet skall vara förverkad, om den förpliktelse för vars fullgörande säkerheten ställts icke rätteligen fullgöres, är utan verkan.",
+        "explanation": "This section explicitly renders forfeiture clauses for pledged assets ineffective when a debt is not paid on time.",
+        "url": "https://lagen.nu/1915:218#P37",
+        "quoteVerified": true
+       },
+       {
+        "section": "36 §",
+        "law": "AvtL",
+        "quote": "Avtalsvillkor får jämkas eller lämnas utan avseende, om villkoret är oskäligt med hänsyn till avtalets innehåll, omständigheterna vid avtalets tillkomst, senare inträffade förhållanden och omständigheterna i övrigt.",
+        "explanation": "The clause could potentially be adjusted or set aside if deemed unreasonable due to the disproportionate loss for the borrower.",
+        "url": "https://lagen.nu/1915:218#P36",
+        "quoteVerified": true
+       }
+      ],
+      "retrieved": [
+       "37 §",
+       "31 §",
+       "36 §",
+       "35 §",
+       "33 §"
+      ]
+     }
+    ],
+    "legalCheckAvailable": true
+   },
+   "seconds": 2.8
+  },
+  "short-acceptance-window": {
+   "output": {
+    "isLegalDocument": true,
+    "summary": "This document outlines the terms for a commercial offer and its delivery. It establishes a strict two-hour deadline for the buyer to provide written acceptance. Additionally, it specifies that the delivery of goods must occur at the buyer's premises located in Malmö.",
+    "documentType": "Sales contract terms",
+    "definitions": [],
+    "risks": [
+     {
+      "description": "Extremely short acceptance window",
+      "explanation": "The requirement that written acceptance must reach the seller within two hours creates a high risk of inadvertent lapse if the buyer does not monitor communications constantly.",
+      "affectedParty": "Buyer",
+      "riskLevel": "high",
+      "citation": "This offer lapses unless the Buyer's written acceptance reaches the Seller within two (2) hours of the time this offer is sent.",
+      "citationVerified": true,
+      "citationSpan": [
+       10,
+       136
+      ],
+      "legalBasis": [
+       {
+        "section": "2 §",
+        "law": "AvtL",
+        "quote": "Har anbudsgivaren bestämt viss tid för svar, skall han anses hava föreskrivit, att svaret skall inom den tid komma honom till handa.",
+        "explanation": "This provision confirms the validity of the offeror setting a specific time limit for acceptance, which applies to the short two-hour window stipulated in the clause.",
+        "url": "https://lagen.nu/1915:218#P2",
+        "quoteVerified": true
+       }
+      ],
+      "retrieved": [
+       "2 §",
+       "3 §",
+       "5 §",
+       "4 §",
+       "7 §"
+      ]
+     }
+    ],
+    "legalCheckAvailable": true
+   },
+   "seconds": 3.1
+  },
+  "one-sided-termination": {
+   "output": {
+    "isLegalDocument": true,
+    "summary": "This document outlines the termination conditions and governing law for an agreement between a client and a consultant. It allows the client to terminate the agreement at any time without notice, whereas the consultant must provide twelve months' notice. Additionally, the agreement specifies that it is governed by Swedish law.",
+    "documentType": "Termination clause",
+    "definitions": [],
+    "risks": [
+     {
+      "description": "Asymmetrical termination rights favoring the client",
+      "explanation": "The client can exit the contract immediately without notice, while the consultant is bound by a lengthy 12-month notice period, creating a significant imbalance in obligations.",
+      "affectedParty": "Consultant",
+      "riskLevel": "high",
+      "citation": "The Client may terminate this Agreement at any time without notice, while the Consultant may terminate only with twelve (12) months' notice.",
+      "citationVerified": true,
+      "citationSpan": [
+       16,
+       155
+      ],
+      "legalBasis": [
+       {
+        "section": "36 §",
+        "law": "AvtL",
+        "quote": "Avtalsvillkor får jämkas eller lämnas utan avseende, om villkoret är oskäligt med hänsyn till avtalets innehåll",
+        "explanation": "This section allows an asymmetrical termination clause to be adjusted or set aside if it is considered unfair regarding the content of the agreement and the balance of obligations.",
+        "url": "https://lagen.nu/1915:218#P36",
+        "quoteVerified": true
+       }
+      ],
+      "retrieved": [
+       "36 §",
+       "38 §",
+       "31 §",
+       "37 §",
+       "33 §"
+      ]
+     }
+    ],
+    "legalCheckAvailable": true
+   },
+   "seconds": 3.4
+  },
+  "long-auto-renewal": {
+   "output": {
+    "isLegalDocument": true,
+    "summary": "This document outlines the term and support provisions of an agreement between a Customer and a Supplier. The agreement features an automatic renewal clause for five-year periods unless the Customer provides an extensive eighteen-month prior notice of termination. Additionally, it specifies that the Supplier will provide support services on weekdays from 08:00 to 17:00.",
+    "documentType": "Service Agreement",
+    "definitions": [],
+    "risks": [
+     {
+      "description": "Long automatic renewal lock-in period",
+      "explanation": "The agreement automatically renews for five years unless the customer acts far in advance, which can trap the customer in an unwanted contract if missed.",
+      "affectedParty": "Customer",
+      "riskLevel": "high",
+      "citation": "This Agreement automatically renews for successive five-year periods unless the Customer gives notice of termination at least eighteen (18) months before the end of the current period.",
+      "citationVerified": true,
+      "citationSpan": [
+       9,
+       192
+      ],
+      "legalBasis": [
+       {
+        "section": "36 §",
+        "law": "AvtL",
+        "quote": "Avtalsvillkor får jämkas eller lämnas utan avseende, om villkoret är oskäligt med hänsyn till avtalets innehåll, omständigheterna vid avtalets tillkomst, senare inträffade förhållanden och omständigheterna i övrigt.",
+        "explanation": "A long automatic renewal period combined with a distant notice deadline could potentially be assessed under the general unreasonableness rule of Section 36 if it creates an unfair imbalance between the parties.",
+        "url": "https://lagen.nu/1915:218#P36",
+        "quoteVerified": true
+       }
+      ],
+      "retrieved": [
+       "18 §",
+       "36 §",
+       "5 §",
+       "37 §",
+       "19 §"
+      ]
+     }
+    ],
+    "legalCheckAvailable": true
+   },
+   "seconds": 2.8
+  },
+  "foreign-law-and-forum": {
+   "output": {
+    "isLegalDocument": true,
+    "summary": "This agreement establishes that it is governed by the laws of the State of Delaware, USA, with all disputes resolved exclusively in its courts. It also sets the price at SEK 40,000, which is payable upon delivery. Overall, it provides basic terms regarding legal jurisdiction and payment obligations.",
+    "documentType": "Unclear",
+    "definitions": [],
+    "risks": [
+     {
+      "description": "Exclusive jurisdiction in Delaware",
+      "explanation": "Requiring all disputes to be resolved exclusively in Delaware courts may create significant travel, legal, and operational burdens for parties located outside of Delaware.",
+      "affectedParty": "The non-Delaware party",
+      "riskLevel": "medium",
+      "citation": "all disputes shall be resolved exclusively in the courts of Delaware.",
+      "citationVerified": true,
+      "citationSpan": [
+       98,
+       166
+      ],
+      "legalBasis": [
+       {
+        "section": "36 §",
+        "law": "AvtL",
+        "quote": "Avtalsvillkor får jämkas eller lämnas utan avseende, om villkoret är oskäligt med hänsyn till avtalets innehåll, omständigheterna vid avtalets tillkomst, senare inträffade förhållanden och omständigheterna i övrigt.",
+        "explanation": "This provision could potentially be used to adjust or set aside an exclusive jurisdiction clause if it is deemed unreasonable considering the circumstances and the burden it places on a party.",
+        "url": "https://lagen.nu/1915:218#P36",
+        "quoteVerified": true
+       }
+      ],
+      "retrieved": [
+       "36 §",
+       "38 §",
+       "31 §",
+       "37 §",
+       "28 §"
+      ]
+     }
+    ],
+    "legalCheckAvailable": true
+   },
+   "seconds": 2.7
+  },
+  "gdpr-transfer": {
+   "output": {
+    "isLegalDocument": true,
+    "summary": "This document outlines data transfer permissions and the term of the agreement between a Processor and a Customer. It allows the Processor to transfer personal data internationally without further safeguards. Additionally, it specifies that the agreement remains active for the duration of the personal data processing.",
+    "documentType": "Data processing clause",
+    "definitions": [],
+    "risks": [
+     {
+      "description": "Unrestricted international data transfers",
+      "explanation": "Permitting transfers outside the EU/EEA without additional safeguards may violate regulatory frameworks such as the GDPR, exposing the Customer to compliance penalties.",
+      "affectedParty": "Customer",
+      "riskLevel": "high",
+      "citation": "The Processor may transfer the Customer's personal data to any country, including countries outside the EU/EEA, without further safeguards.",
+      "citationVerified": true,
+      "citationSpan": [
+       19,
+       157
+      ],
+      "legalBasis": [
+       {
+        "section": "36 §",
+        "law": "AvtL",
+        "quote": "Avtalsvillkor får jämkas eller lämnas utan avseende, om villkoret är oskäligt med hänsyn till avtalets innehåll, omständigheterna vid avtalets tillkomst, senare inträffade förhållanden och omständigheterna i övrigt.",
+        "explanation": "This provision could potentially be used to adjust or set aside the clause if the unrestricted transfer of data renders the contract terms unreasonable under the circumstances.",
+        "url": "https://lagen.nu/1915:218#P36",
+        "quoteVerified": true
+       }
+      ],
+      "retrieved": [
+       "38 §",
+       "36 §",
+       "11 §",
+       "31 §",
+       "9 §"
+      ]
+     }
+    ],
+    "legalCheckAvailable": true
+   },
+   "seconds": 3.0
+  },
+  "ip-incl-pre-existing": {
+   "output": {
+    "isLegalDocument": true,
+    "summary": "This document outlines an agreement regarding intellectual property and consulting fees. Section 1 states that all intellectual property created by the Consultant, including pre-existing tools and know-how, transfers to the Client without additional compensation. Section 2 establishes an hourly rate of SEK 1,100 to be paid by the Client to the Consultant.",
+    "documentType": "Consulting agreement clause",
+    "definitions": [],
+    "risks": [
+     {
+      "description": "Loss of pre-existing intellectual property without compensation",
+      "explanation": "The clause mandates that pre-existing tools and know-how owned by the Consultant prior to the agreement are transferred to the Client without any additional compensation, which may result in the Consultant losing ownership of their prior work.",
+      "affectedParty": "Consultant",
+      "riskLevel": "high",
+      "citation": "All intellectual property created by the Consultant, including pre-existing tools and know-how owned by the Consultant before this Agreement, shall transfer to the Client without additional compensation.",
+      "citationVerified": true,
+      "citationSpan": [
+       26,
+       228
+      ],
+      "legalBasis": [
+       {
+        "section": "36 §",
+        "law": "AvtL",
+        "quote": "Avtalsvillkor får jämkas eller lämnas utan avseende, om villkoret är oskäligt med hänsyn till avtalets innehåll, omständigheterna vid avtalets tillkomst, senare inträffade förhållanden och omständigheterna i övrigt.",
+        "explanation": "This provision could potentially be applied to adjust or set aside the clause if the forfeiture of pre-existing intellectual property without compensation is deemed an unreasonable contractual term.",
+        "url": "https://lagen.nu/1915:218#P36",
+        "quoteVerified": true
+       },
+       {
+        "section": "31 §",
+        "law": "AvtL",
+        "quote": "Har någon begagnat sig av annans trångmål, oförstånd, lättsinne eller beroende ställning till att taga eller betinga sig förmåner, vilka stå i uppenbart missförhållande till det vederlag, som må hava blivit erlagt eller utfäst, eller för vilka något vederlag icke skall utgå, vare rättshandling, som sålunda tillkommit, icke gällande mot den förfördelade.",
+        "explanation": "This section might apply if a party's dependent position or vulnerability was exploited to exact terms where pre-existing assets are transferred without any consideration or proportional compensation.",
+        "url": "https://lagen.nu/1915:218#P31",
+        "quoteVerified": true
+       }
+      ],
+      "retrieved": [
+       "36 §",
+       "31 §",
+       "33 §",
+       "37 §",
+       "38 §"
+      ]
+     }
+    ],
+    "legalCheckAvailable": true
+   },
+   "seconds": 3.1
+  },
+  "vite-sv": {
+   "output": {
+    "isLegalDocument": true,
+    "summary": "This document outlines the delivery terms and penalties for a contract. It specifies that delivery must take place no later than June 1, 2027. Additionally, it imposes a penalty of 50 percent of the contract sum per commenced day in the event of a delayed delivery.",
+    "documentType": "Delivery and Penalty clause",
+    "definitions": [],
+    "risks": [
+     {
+      "description": "Extremely high financial penalty for delayed delivery",
+      "explanation": "A penalty of 50 percent of the total contract sum per commenced day of delay can quickly accumulate into massive financial liabilities, potentially exceeding the total value of the contract within a couple of days.",
+      "affectedParty": "The supplier",
+      "riskLevel": "high",
+      "citation": "Vid försenad leverans utgår vite med 50 procent av kontraktssumman per påbörjad dag.",
+      "citationVerified": true,
+      "citationSpan": [
+       63,
+       146
+      ],
+      "legalBasis": [
+       {
+        "section": "36 §",
+        "law": "AvtL",
+        "quote": "Avtalsvillkor får jämkas eller lämnas utan avseende, om villkoret är oskäligt med hänsyn till avtalets innehåll, omständigheterna vid avtalets tillkomst, senare inträffade förhållanden och omständigheterna i övrigt.",
+        "explanation": "An extremely high financial penalty for delayed delivery could potentially be considered unreasonable regarding the contract's content and might be adjusted or set aside under this section.",
+        "url": "https://lagen.nu/1915:218#P36",
+        "quoteVerified": true
+       }
+      ],
+      "retrieved": [
+       "37 §",
+       "31 §",
+       "28 §",
+       "40 §",
+       "36 §"
+      ]
+     }
+    ],
+    "legalCheckAvailable": true
+   },
+   "seconds": 2.7
+  },
+  "perpetual-confidentiality": {
+   "output": {
+    "isLegalDocument": true,
+    "summary": "This document outlines two clauses regarding a confidentiality agreement and notices. The first clause imposes a permanent confidentiality obligation on the Recipient for any information received from the Discloser, even if it later becomes public. The second clause specifies that official notices must be sent via email to the addresses provided above.",
+    "documentType": "Confidentiality clause",
+    "definitions": [
+     {
+      "term": "Recipient",
+      "definition": "The party receiving information from the Discloser who is bound by the confidentiality obligation."
+     },
+     {
+      "term": "Discloser",
+      "definition": "The party providing information to the Recipient."
+     }
+    ],
+    "risks": [
+     {
+      "description": "Perpetual confidentiality obligation with no public domain exception",
+      "explanation": "Requiring information to be kept confidential forever, even after it becomes public, imposes an unreasonable and burdensome legal liability on the Recipient.",
+      "affectedParty": "Recipient",
+      "riskLevel": "high",
+      "citation": "The Recipient shall keep all information received from the Discloser confidential forever, regardless of whether the information later becomes public.",
+      "citationVerified": true,
+      "citationSpan": [
+       20,
+       169
+      ],
+      "legalBasis": [
+       {
+        "section": "36 §",
+        "law": "AvtL",
+        "quote": "Avtalsvillkor får jämkas eller lämnas utan avseende, om villkoret är oskäligt med hänsyn till avtalets innehåll, omständigheterna vid avtalets tillkomst, senare inträffade förhållanden och omständigheterna i övrigt.",
+        "explanation": "A perpetual confidentiality obligation lacking a public domain exception could potentially be considered unreasonable under this section, allowing a court to adjust or set aside the term.",
+        "url": "https://lagen.nu/1915:218#P36",
+        "quoteVerified": true
+       }
+      ],
+      "retrieved": [
+       "38 §",
+       "33 §",
+       "36 §",
+       "9 §",
+       "41 §"
+      ]
+     }
+    ],
+    "legalCheckAvailable": true
+   },
+   "seconds": 2.9
+  },
+  "unilateral-amendment": {
+   "output": {
+    "isLegalDocument": true,
+    "summary": "This document outlines the terms for modifying service conditions and establishes the monthly subscription fee. It permits the Provider to unilaterally amend the terms by website posting, with continued use acting as acceptance. Additionally, it sets the subscription fee at SEK 99 per month.",
+    "documentType": "Terms of Service",
+    "definitions": [],
+    "risks": [
+     {
+      "description": "Unilateral amendment of terms",
+      "explanation": "The Provider can change the terms at any time without direct notification to the User, and simply continuing to use the service binds the User to the new terms.",
+      "affectedParty": "User",
+      "riskLevel": "high",
+      "citation": "The Provider may amend these Terms at any time by posting the amended Terms on its website, and the User's continued use of the service constitutes acceptance of the amended Terms.",
+      "citationVerified": true,
+      "citationSpan": [
+       12,
+       191
+      ],
+      "legalBasis": [
+       {
+        "section": "36 §",
+        "law": "AvtL",
+        "quote": "Avtalsvillkor får jämkas eller lämnas utan avseende, om villkoret är oskäligt med hänsyn till avtalets innehåll, omständigheterna vid avtalets tillkomst, senare inträffade förhållanden och omständigheterna i övrigt.",
+        "explanation": "A term that allows one party to unilaterally modify the agreement at any time could potentially be considered unreasonable under general fairness principles, and might therefore be adjusted or set aside.",
+        "url": "https://lagen.nu/1915:218#P36",
+        "quoteVerified": true
+       }
+      ],
+      "retrieved": [
+       "36 §",
+       "1 §",
+       "9 §",
+       "6 §",
+       "14 §"
+      ]
+     }
+    ],
+    "legalCheckAvailable": true
+   },
+   "seconds": 2.8
+  },
+  "felansvar-ond-tro-sv": {
+   "output": {
+    "isLegalDocument": true,
+    "summary": "This document outlines the purchase price of 350,000 kronor to be paid on the date of possession. It also includes an 'as-is' or waiver clause where the buyer waives all claims against the seller for defects in the item, even if the seller knew about the defect and failed to disclose it. The agreement heavily favors the seller by completely absolving them of liability for hidden or known defects.",
+    "documentType": "Purchase agreement clause",
+    "definitions": [],
+    "risks": [
+     {
+      "description": "Complete waiver of buyer's rights regarding defective goods",
+      "explanation": "The buyer gives up all legal recourse for any defects in the item, which means they cannot claim compensation or cancel the purchase even if the seller knowingly concealed a flaw.",
+      "affectedParty": "Köparen",
+      "riskLevel": "high",
+      "citation": "Köparen avstår från alla anspråk mot säljaren på grund av fel i varan, även om säljaren kände till felet och inte upplyste om det.",
+      "citationVerified": true,
+      "citationSpan": [
+       90,
+       219
+      ],
+      "legalBasis": [
+       {
+        "section": "36 §",
+        "law": "AvtL",
+        "quote": "Avtalsvillkor får jämkas eller lämnas utan avseende, om villkoret är oskäligt med hänsyn till avtalets innehåll, omständigheterna vid avtalets tillkomst, senare inträffade förhållanden och omständigheterna i övrigt.",
+        "explanation": "A complete waiver of rights regarding defects, especially where the seller knowingly concealed a flaw, could potentially be considered unreasonable and adjusted or set aside under this section.",
+        "url": "https://lagen.nu/1915:218#P36",
+        "quoteVerified": true
+       },
+       {
+        "section": "33 §",
+        "law": "AvtL",
+        "quote": "Rättshandling, som eljest vore att såsom giltig anse, må ej göras gällande, där omständigheterna vid dess tillkomst voro sådana, att det skulle strida mot tro och heder att med vetskap om dem åberopa rättshandlingen",
+        "explanation": "If the seller knowingly withheld information about a defect and relies on this waiver, it might be argued that enforcing the term conflicts with principles of honor and good faith.",
+        "url": "https://lagen.nu/1915:218#P33",
+        "quoteVerified": true
+       }
+      ],
+      "retrieved": [
+       "31 §",
+       "36 §",
+       "37 §",
+       "33 §",
+       "30 §"
+      ]
+     }
+    ],
+    "legalCheckAvailable": true
+   },
+   "seconds": 3.2
+  },
+  "usurious-interest": {
+   "output": {
+    "isLegalDocument": true,
+    "summary": "The Lender provides a loan of SEK 10,000 to the Borrower. The Borrower is required to repay the loan amount along with an interest rate of 25 percent per month.",
+    "documentType": "Loan agreement",
+    "definitions": [],
+    "risks": [
+     {
+      "description": "Extremely high monthly interest rate",
+      "explanation": "An interest rate of 25 percent per month creates a rapid accumulation of debt, making repayment potentially very difficult for the borrower.",
+      "affectedParty": "Borrower",
+      "riskLevel": "high",
+      "citation": "The Borrower shall repay the loan together with interest of 25 percent per month.",
+      "citationVerified": true,
+      "citationSpan": [
+       64,
+       144
+      ],
+      "legalBasis": [
+       {
+        "section": "36 §",
+        "law": "AvtL",
+        "quote": "Avtalsvillkor får jämkas eller lämnas utan avseende, om villkoret är oskäligt med hänsyn till avtalets innehåll, omständigheterna vid avtalets tillkomst, senare inträffade förhållanden och omständigheterna i övrigt.",
+        "explanation": "This section could apply because an extremely high monthly interest rate might render the clause unreasonable regarding the contract's content.",
+        "url": "https://lagen.nu/1915:218#P36",
+        "quoteVerified": true
+       },
+       {
+        "section": "31 §",
+        "law": "AvtL",
+        "quote": "Har någon begagnat sig av annans trångmål, oförstånd, lättsinne eller beroende ställning till att taga eller betinga sig förmåner, vilka stå i uppenbart missförhållande till det vederlag, som må hava blivit erlagt eller utfäst",
+        "explanation": "This section could apply if the high interest rate stands in clear disproportion to the loan and the lender has taken advantage of the borrower's distress or vulnerable position.",
+        "url": "https://lagen.nu/1915:218#P31",
+        "quoteVerified": true
+       }
+      ],
+      "retrieved": [
+       "37 §",
+       "36 §",
+       "31 §",
+       "28 §",
+       "25 §"
+      ]
+     }
+    ],
+    "legalCheckAvailable": true
+   },
+   "seconds": 2.9
+  },
+  "balanced-sale": {
+   "output": {
+    "isLegalDocument": true,
+    "summary": "This agreement outlines the sale of 500 office chairs by the Seller to the Buyer for a total price, with a specified delivery date of March 1, 2027. It establishes payment terms within 30 days of delivery and outlines a 14-day notice period for the Seller to replace defective chairs free of charge. Finally, the agreement specifies that it is governed by Swedish law.",
+    "documentType": "Sales agreement",
+    "definitions": [],
+    "risks": [
+     {
+      "description": "Short notice window for defect claims",
+      "explanation": "The Buyer has a very limited timeframe of only 14 days from delivery to notice and report any defects to receive free replacements.",
+      "affectedParty": "Buyer",
+      "riskLevel": "medium",
+      "citation": "the Buyer gives notice within 14 days of delivery",
+      "citationVerified": true,
+      "citationSpan": [
+       249,
+       298
+      ],
+      "legalBasis": [
+       {
+        "section": "36 §",
+        "law": "AvtL",
+        "quote": "Avtalsvillkor får jämkas eller lämnas utan avseende, om villkoret är oskäligt med hänsyn till avtalets innehåll, omständigheterna vid avtalets tillkomst, senare inträffade förhållanden och omständigheterna i övrigt.",
+        "explanation": "A very short notice window for defect claims could potentially be considered unreasonable under the general unreasonableness rule, allowing the term to be adjusted or set aside.",
+        "url": "https://lagen.nu/1915:218#P36",
+        "quoteVerified": true
+       }
+      ],
+      "retrieved": [
+       "9 §",
+       "3 §",
+       "6 §",
+       "37 §",
+       "36 §"
+      ]
+     }
+    ],
+    "legalCheckAvailable": true
+   },
+   "seconds": 2.9
+  },
+  "balanced-service-sv": {
+   "output": {
+    "isLegalDocument": true,
+    "summary": "This agreement outlines a consulting assignment to develop a website for a total compensation of 120,000 SEK, payable in two installments. It allows either party to terminate the contract with a one-month notice period. Furthermore, any disputes arising from the agreement shall be resolved by a general court.",
+    "documentType": "Consulting agreement",
+    "definitions": [],
+    "risks": [
+     {
+      "description": "Short termination notice period",
+      "explanation": "Either party can terminate the contract with only one month's notice, which may cause sudden project disruption or financial loss.",
+      "affectedParty": "Both parties",
+      "riskLevel": "medium",
+      "citation": "Vardera parten får säga upp avtalet med en månads uppsägningstid.",
+      "citationVerified": true,
+      "citationSpan": [
+       190,
+       254
+      ],
+      "legalBasis": [
+       {
+        "section": "36 §",
+        "law": "AvtL",
+        "quote": "Avtalsvillkor får jämkas eller lämnas utan avseende, om villkoret är oskäligt med hänsyn till avtalets innehåll, omständigheterna vid avtalets tillkomst, senare inträffade förhållanden och omständigheterna i övrigt.",
+        "explanation": "If a short termination notice period leads to an unreasonable outcome considering later circumstances or the contract's contents as a whole, this provision could potentially be invoked to adjust or set aside the term.",
+        "url": "https://lagen.nu/1915:218#P36",
+        "quoteVerified": true
+       }
+      ],
+      "retrieved": [
+       "37 §",
+       "38 §",
+       "36 §",
+       "31 §",
+       "28 §"
+      ]
+     }
+    ],
+    "legalCheckAvailable": true
+   },
+   "seconds": 2.7
+  },
+  "not-legal-grocery": {
+   "output": {
+    "isLegalDocument": false,
+    "reason": "The input text is a grocery list and contains no legal terms, obligations, or contractual language."
+   },
+   "seconds": 0.7
+  },
+  "not-legal-email": {
+   "output": {
+    "isLegalDocument": false,
+    "reason": "The input is a casual message about lunch plans and does not contain any legal text or clauses."
+   },
+   "seconds": 0.7
+  },
+  "not-legal-recipe": {
+   "output": {
+    "isLegalDocument": false,
+    "reason": "The provided text is a recipe for making pancakes and contains no legal language or clauses."
+   },
+   "seconds": 0.8
+  }
+ }
+}

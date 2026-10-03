@@ -159,29 +159,39 @@ def home():
     return {"message": "Hello from FastAPI"}
 
 
+def run_analysis(text: str) -> LegalAnalysis | NotLegalAnalysis:
+    """The full pipeline: analyze, verify citations, add legal basis.
+
+    Raises google.genai.errors.APIError on API failures and ValueError if the
+    model's answer doesn't match the schema. Used by the endpoint and by
+    evaluate.py.
+    """
+    response = client.models.generate_content(model=MODEL, contents=text, config=ANALYZE_CONFIG)
+    try:
+        result = analysis_adapter.validate_python(json.loads(response.text or ""))
+    except (json.JSONDecodeError, ValidationError) as e:
+        raise ValueError("The model returned an unexpected format.") from e
+
+    if isinstance(result, LegalAnalysis):
+        verify_citations(result, text)
+        add_legal_basis(result)
+    return result
+
+
 @app.post("/analyze")
 def analyze(request: AnalyzeRequest):
     if not request.text.strip():
         return {"error": "No text provided to analyze."}
 
     try:
-        response = client.models.generate_content(
-            model=MODEL, contents=request.text, config=ANALYZE_CONFIG
-        )
+        result = run_analysis(request.text)
     except errors.ClientError as e:
         if e.code == 429:
             return {"error": "Gemini API rate limit reached. Wait a bit and try again."}
         raise
     except errors.ServerError:
         return {"error": "Gemini is temporarily unavailable. Try again in a moment."}
-
-    try:
-        result = analysis_adapter.validate_python(json.loads(response.text or ""))
-    except (json.JSONDecodeError, ValidationError):
-        return {"error": "The model returned an unexpected format."}
-
-    if isinstance(result, LegalAnalysis):
-        verify_citations(result, request.text)
-        add_legal_basis(result)
+    except ValueError as e:
+        return {"error": str(e)}
 
     return {"result": result.model_dump()}

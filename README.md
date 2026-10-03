@@ -14,7 +14,8 @@ Built as a learning project to practice full-stack LLM integration: prompt desig
   - defined terms found in the text
   - flagged risks, each with a severity (`low` / `medium` / `high`), the affected party, and a citation back to the source text
   - **citation verification** — every quoted citation is checked against the original text. Found quotes are highlighted in the document; quotes the model paraphrased or made up are marked "not found" so the user knows not to trust that finding blindly
-  - **legal basis in Swedish law (RAG)** — each risk is matched against the Swedish Contracts Act (*Avtalslagen*, 1915:218). The app shows which sections may apply (e.g. 36 § on unfair terms, 38 § on non-compete clauses), quotes the statute, and links to it — or says plainly that no section applies
+  - **legal basis in Swedish law (RAG)** — each risk is matched against the Swedish Contracts Act (*Avtalslagen*, 1915:218). The app shows which sections may apply (e.g. 36 § on unfair terms, 38 § on non-compete clauses), quotes the statute, and links to it
+- **Evaluation** — a hand-labelled test set of 23 cases with a scoring script; results below
 - **Chat** (`/`) — a HUD-styled chat interface, a second, simpler Gemini integration for comparison.
 
 ## Stack
@@ -42,6 +43,32 @@ risk ──embed──▶ cosine search over 41 statute sections ──top 5─�
 - **Graceful degradation:** if the legal-basis step fails (rate limit, outage), the analysis is still returned and the UI says the check was unavailable.
 
 Each analysis costs two generation calls and one embedding call.
+
+## Evaluation
+
+`Backend/evaluate.py` runs the full pipeline over `Backend/eval/cases.json`: 23 short contracts in English and Swedish (20 legal, 3 not), with 18 labelled risky clauses, balanced clauses that should *not* be flagged, and the Avtalslagen sections each risk should cite. A predicted risk counts as finding a labelled clause when its verified citation overlaps that clause, so scoring reuses the app's own citation check rather than comparing free-text descriptions.
+
+Latest run (`gemini-3.5-flash-lite`, full report in [`Backend/eval/REPORT.md`](Backend/eval/REPORT.md)):
+
+| Metric | Result |
+|---|---|
+| Legal / not-legal classification | 100% (23/23) |
+| Risky clauses found (recall) | 100% (18/18) |
+| Flagged risks that are labelled risky (precision) | 90% (18/20) |
+| Contract citations verified in source text | 100% (20/20) |
+| Severity exact / within one level | 83% / 100% |
+| Expected Avtalslagen section cited | 100% (14/14) |
+| Expected section among top-5 retrieved | 100% (14/14) |
+| Correctly cites *no* section when none applies | **0% (0/2)** |
+| Statute quotes verified | 100% (27/27) |
+
+**What this shows:**
+- Clear-cut risks are found reliably, and retrieval puts the right section in front of the model every time.
+- The main weakness: when no section applies (a GDPR data-transfer term, a foreign-court clause), the model still reaches for 36 §, the general clause on unfair terms, as a catch-all. Its explanations are hedged ("could potentially"), but the labels say no section applies. This is the next thing to fix, ideally after adding more no-basis cases so a prompt change isn't tuned to just two examples.
+- Severity disagreements all go one way: the model rates borderline terms *high* where the labels say *medium*.
+- The verification layer earns its place: in an earlier run the model quoted 37 § as "säkerheten ställd" where the statute says "ställts", and the check flagged it.
+
+**Caveats:** the cases were written to be clear-cut, so these numbers are an upper bound for messy real contracts; 23 cases is small; and model output varies between runs (two runs gave the same recall and section accuracy, with precision 82% and 90%). Re-score a saved run without API calls: `python evaluate.py --score eval/results/<run>.json`.
 
 ## Running locally
 
