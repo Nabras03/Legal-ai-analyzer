@@ -12,6 +12,18 @@ Built as a learning project to practice full-stack LLM integration: prompt desig
 
 > **Disclaimer:** This is a portfolio/learning project, not a legal tool. It does not give legal advice and its output should not be relied on for real legal decisions.
 
+## How this was built
+
+I'm a law student, not a software engineer. The code in this repository was written by Claude Code (Anthropic's AI coding assistant), working under my direction. The project is part of a self-directed learning path from law student to legal AI builder, where each step is a legal problem used to learn a new AI technique: structured output on contract clauses, RAG on statutes, and evaluation of legal accuracy.
+
+**My role:**
+- **Direction and scope:** I decided step by step what to build next and how the system should be structured: a separate FastAPI backend, structured JSON instead of free text, grounding in Avtalslagen, and a measurable evaluation. Claude Code proposed the implementation details and wrote the code.
+- **Legal judgement:** I chose the legal sources and reviewed the evaluation labels. That review mattered: the initial labels treated 36 § as inapplicable to four clauses, I judged that it can apply, and correcting the labels showed the model had been right. Tuning the prompt against the original labels would have made it worse.
+- **Decisions and trade-offs:** model choice under free-tier quotas, abuse limits for the public demo, and what to keep or cut.
+- **Testing and deployment:** testing the app against example contracts, and deploying it on Render and Vercel.
+
+What I'm practising is the work a legal AI system needs from a lawyer: specifying it precisely, checking its output against the sources, and deciding when it can be trusted.
+
 ## What it does
 
 - **Text Analyzer** (`/analyze`) — paste any clause or document. Gemini first decides whether the input is actually legal text (it rejects grocery lists, casual text, etc.), then returns:
