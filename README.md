@@ -18,7 +18,7 @@ I'm a law student, not a software engineer. The code in this repository was writ
 
 **My role:**
 - **Direction and scope:** I decided step by step what to build next and how the system should be structured: a separate FastAPI backend, structured JSON instead of free text, grounding in Avtalslagen, and a measurable evaluation. Claude Code proposed the implementation details and wrote the code.
-- **Legal judgement:** I chose the legal sources and reviewed the evaluation labels. That review mattered: the initial labels treated 36 § as inapplicable to four clauses, I judged that it can apply, and correcting the labels showed the model had been right. Tuning the prompt against the original labels would have made it worse.
+- **Legal judgement:** I chose the legal sources and reviewed the evaluation labels. That review mattered: the initial labels said no section of Avtalslagen applied to two clauses and left two others open; I judged that 36 § can apply to all four, and correcting the labels showed the model had been right. Tuning the prompt against the original labels would have made it worse.
 - **Decisions and trade-offs:** model choice under free-tier quotas, abuse limits for the public demo, and what to keep or cut.
 - **Testing and deployment:** testing the app against example contracts, and deploying it on Render and Vercel.
 
